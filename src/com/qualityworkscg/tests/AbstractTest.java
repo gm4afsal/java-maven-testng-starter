@@ -1,10 +1,14 @@
 package com.qualityworkscg.tests;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
@@ -16,10 +20,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public abstract class  AbstractTest {
   
   protected static Page page;
+  public WebDriver driver;
   
   @BeforeTest
   @Parameters({"url"})
-  public void setup(String url) {
+  public void setup(String url) throws MalformedURLException {
 
 	  System.out.println("Browser: Chrome");
       
@@ -32,7 +37,7 @@ public abstract class  AbstractTest {
       
       options.merge(capabilities);
 
-      options.addArguments("--headless");
+     // options.addArguments("--headless");
       
       options.addArguments("start-maximized"); 
       options.addArguments("enable-automation"); 
@@ -44,9 +49,9 @@ public abstract class  AbstractTest {
       
       options.addArguments("--disable-web-security");
       
-       
+      driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);
       
-    page = new Page(new ChromeDriver(options));
+    page = new Page(driver);
     page.navigate(url);
   }
 
