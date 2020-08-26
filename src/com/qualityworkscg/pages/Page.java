@@ -1,13 +1,16 @@
 package com.qualityworkscg.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+
 
 public class Page {
   
   protected WebDriver driver;
   
-  public Page(WebDriver driver) {
-    this.driver = driver;
+  public Page(WebDriver driver2) {
+    this.driver = driver2;
   }
 
   public void navigate(String url) {
