@@ -49,7 +49,7 @@ public abstract class  AbstractTest {
       
       options.addArguments("--disable-web-security");
       
-      driver = new RemoteWebDriver(new URL("http://3.21.103.104:4444/wd/hub"),options);
+      driver = new RemoteWebDriver(new URL("http://3.129.9.62:4444/wd/hub"),options);
       
     page = new Page(driver);
     page.navigate(url);
